@@ -1,0 +1,79 @@
+.single-section-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 73px 90px 71px 90px;
+}
+
+.single-image-post {
+    width: 900px;
+    height: 614px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.single-content-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+
+}
+
+.single-title-post {
+    margin-top: 20px;
+    margin-bottom: 18px;
+    margin-left: -46px;
+}
+
+.single-content-post1 {
+    margin: 0 46px 61px 46px;
+}
+
+.single-content-container>a {
+    padding: 14px 10px 15px 8px;
+    border-radius: 9px;
+    background: var(--800, #7E7C65);
+    color: #FFF;
+
+    /* Tchig Mono-p1-24/Bold */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: flex-start;
+    margin-top: 61px;
+
+}
+
+@media screen and (max-width: 600px) {
+    .single-section-post {
+        margin: 20px;
+    }
+
+    .single-image-post {
+        width: 100%;
+        height: auto;
+    }
+
+    .single-content-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .single-title-post {
+        margin-left: 0;
+    }
+
+    .single-content-post1 {
+        margin: 0 10px 20px 10px;
+    }
+
+    .single-content-container>a {
+        font-size: 18px;
+        padding: 10px 8px 12px 6px;
+        border-radius: 6px;
+        margin-top: 40px;
+    }
+}

@@ -1,0 +1,118 @@
+#page>div>main>div>div>article>h1 {
+    display: none;
+}
+
+.progress_bar_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 86px;
+    margin-bottom: 75px;
+    gap: 300px;
+
+}
+
+.progress_bar,
+.progress_bar_active {
+    width: 37px;
+    height: 37px;
+    background-color: var(--200, #B6AC9A);
+    border-radius: 50%;
+}
+
+.progress_bar_active {
+    background-color: var(--600, #615133);
+}
+
+.progress_bar_container p {
+    color: #000;
+    /* Able-P3-16/Regular */
+    font-family: Abel;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.progress_bar_container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.progress_border {
+    border: solid 1px black;
+    width: 750px;
+    margin-top: -130px;
+    justify-self: center;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4) {
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 52px;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>tbody>tr>td.wc-block-cart-item__image {
+    padding-left: 0px;
+    width: 167px;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>tbody>tr>td.wc-block-cart-item__product>div>a {
+    color: #000;
+
+    /* Tchig Mono-p1-24/Regular */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>tbody>tr>td.wc-block-cart-item__product>div>div.wc-block-cart-item__quantity {
+    display: flex;
+    gap: 10px;
+
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-sidebar.wc-block-cart__sidebar.wp-block-woocommerce-cart-totals-block {
+    border-radius: 13px;
+    padding: 24px 60px 0px 24px;
+    background: var(--50, #FBFBEE);
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>thead>tr>th.wc-block-cart-items__header-image>span {
+    color: #000;
+
+    /* Tchig Mono-H3-32/Regular */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>tbody>tr>td.wc-block-cart-item__total {
+    display: none;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block>table>thead>tr>th.wc-block-cart-items__header-total {
+    display: none;
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-sidebar.wc-block-cart__sidebar.wp-block-woocommerce-cart-totals-block>div.wc-block-cart__submit.wp-block-woocommerce-proceed-to-checkout-block>div.wc-block-cart__submit-container {
+    border-radius: 24px;
+    background: var(--200, #DEAFB8);
+}
+
+#page>div>main>div>div>article>div>div.wp-block-woocommerce-cart.alignwide>div:nth-child(4)>div>div>div.wc-block-components-sidebar.wc-block-cart__sidebar.wp-block-woocommerce-cart-totals-block>div.wp-block-woocommerce-cart-order-summary-block>h2 {
+    color: #000;
+
+    /* Tchig Mono-H3-32/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

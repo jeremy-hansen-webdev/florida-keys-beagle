@@ -1,0 +1,100 @@
+/* Shop All */
+.products>li {
+    width: 412px !important;
+
+}
+
+.product>a>img {
+    height: 458px !important;
+}
+
+.product>a>h2 {
+    color: #000;
+    font-family: var(--font-family-title, "Tchig Mono") !important;
+    font-size: 24px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.product>a>span {
+    color: #000 !important;
+    font-family: Abel !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.product>.button {
+    display: none !important;
+}
+
+.products {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.products>li {
+    margin: 0 0 62px 0 !important;
+    padding: 0 !important;
+}
+
+/* Single Product */
+
+.category-title {
+    text-align: start;
+    margin: 44px 0 30px 34px;
+}
+
+.flex-active {
+    gap: 20px !important;
+    margin-right: 20px !important;
+}
+
+.product_meta {
+    display: none !important;
+}
+
+.woocommerce-product-details__short-description {
+    display: none !important;
+}
+
+.product_title {
+    color: #000;
+
+    /* Tchig Mono-H3-32/Regular */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.summary>.price {
+    color: #000 !important;
+
+    /* Able-H1-24/Regular */
+    font-family: Abel !important;
+    font-size: 24px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+@media (max-width: 768px) {
+    .showcase-item-categories {
+        display: flex;
+        justify-content: center;
+        margin: 0 20px 0 20px;
+    }
+
+    .showcase-item-categories a {
+        width: 100%;
+    }
+
+    .products>li {
+        width: 90% !important;
+    }
+}

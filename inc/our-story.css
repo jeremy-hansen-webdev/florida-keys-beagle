@@ -1,0 +1,488 @@
+.hero-our-story {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+
+}
+
+.carousel {
+    position: relative;
+    margin-top: 11px;
+    width: 100%;
+}
+
+
+
+.background-slider-1 {
+    background-image: url(../../../../wp-content/uploads/2025/09/our-story-hero-1.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 779px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.slider {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 779px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-slogan-contain-1 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -850px;
+    margin-bottom: -100px;
+
+}
+
+.slider-heading-1-contain {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+
+.slider-heading-1-contain-b {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.slider-heading-1-contain-b>h4 {
+    margin-right: 30px;
+}
+
+.slider-heading-1-contain>h4 {
+    margin-right: 30px;
+}
+
+.slider-slogan-1 {
+    color: #161314;
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -3.84px;
+    width: 390px;
+    height: 200px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.slider-heading-1 {
+    color: #FDF8D0;
+    text-shadow: -5px 4px 8px #000;
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.slider-slogan-contain-1 {
+    display: inline-flex;
+    height: 178px;
+    padding: 13px 7px 13px 9px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: var(--50, #EDD4D9);
+}
+
+.background-slider-2 {
+    background-image: url(../../../../wp-content/uploads/2025/09/our-story-hero-2.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 779px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-heading-2 {
+    color: #F6F6F6;
+    text-shadow: -5px 5px 8px #000;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: #000;
+    font-family: "Tchig Mono";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -5.6px;
+    margin-top: -120px;
+    text-wrap: wrap;
+}
+
+.slider-slogan-contain-2 {
+    display: inline-flex;
+    padding: 13px 27px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+    border: 1px solid #000;
+    background: var(--400, #B1C959);
+    box-shadow: -3px 4px 4.6px 0 #000;
+    text-wrap: wrap;
+}
+
+.slider-slogan-2 {
+    color: var(--400, #C97E8C);
+
+    /* Tchig Mono-H3-32/Bold */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.background-slider-3 {
+    background-image: url(../../../../wp-content/uploads/2025/09/our-story-hero-3.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 779px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 36px 39px 27px 27px;
+}
+
+.slider-heading-3-h-contain>h4 {
+    color: #F6F6F6;
+    text-shadow: -6px 4px 5.2px #000;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: #000;
+    font-family: "Tchig Mono";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -5.6px;
+
+}
+
+.slider-slogan-3 {
+    color: #000;
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -1.16px;
+    width: 689px;
+    height: 155px;
+    padding: 17px 20px;
+    border-radius: 19px;
+    background: rgba(251, 251, 238, 0.95);
+    text-wrap: wrap;
+
+}
+
+.slider-slogan-contain-3 {
+    align-self: flex-end;
+}
+
+
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide[data-active] {
+    opacity: 1;
+    position: relative;
+}
+
+.slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel>ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: hidden;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 90%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 30;
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+    background: rgba(112, 112, 112, 0.7);
+    outline: none;
+}
+
+/* About */
+.about {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 96px;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 300px;
+
+}
+
+.company-history,
+.giving-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 644px;
+    height: 700px;
+    flex-shrink: 0;
+    margin-bottom: 60px;
+
+}
+
+.paw-icon,
+.charity-icon {
+    position: relative;
+    align-self: flex-start;
+    margin-left: 13px;
+    height: 59px;
+    width: 59px;
+    margin-bottom: -106px;
+}
+
+.company-history {
+    display: flex;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 600px;
+
+
+    border-radius: 8px;
+    background: var(--50, #DBE6C9);
+}
+
+.giving-back {
+    display: flex;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 600px;
+
+    border-radius: 8px;
+    background: var(--50, #D8D2C9);
+}
+
+.about-text {
+    padding: 19px 118px 29px 118px;
+}
+
+.about-image {
+    min-height: 410px;
+    width: 331px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 1320px) {
+    .slider-heading-1 {
+        font-size: 60px;
+    }
+
+    .slider-slogan-contain-1 {
+        margin: 300px 0 0 0;
+    }
+
+    .background-slider-2 {
+        justify-content: flex-start;
+    }
+
+    .slider-heading-2 {
+        margin: 20px 0 0 20px;
+    }
+
+    .slider-slogan-contain-2 {
+        margin: 20px 20px 0 20px;
+    }
+
+    .slider-heading-3-h-contain>h4 {
+        font-size: 60px;
+        -webkit-text-stroke-width: 3px;
+        text-wrap: wrap;
+    }
+
+    .slider-heading-3-h-contain {
+        width: 90%;
+    }
+
+    .slider-slogan-3 {
+        font-size: 24px;
+        text-wrap: wrap;
+
+    }
+}
+
+@media (max-width: 766px) {
+    .about-text {
+        padding: 0;
+        margin: 20px 10px 20px 10px;
+    }
+
+    .paw-icon {
+        display: none;
+    }
+
+    .company-history {
+        min-width: 90%;
+    }
+
+    .giving-back {
+        min-width: 90%;
+    }
+
+    .charity-icon {
+        display: none;
+    }
+
+    .slider-heading-1 {
+        font-size: 40px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .slider-heading-2 {
+        font-size: 60px;
+        margin-top: 50px;
+    }
+
+    .slider-slogan-contain-3 {
+        margin: 0 auto;
+        padding: 10px 5px 10px 5px;
+        height: auto;
+        width: auto;
+    }
+
+    .slider-slogan-3 {
+        font-size: 20px;
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 20px;
+
+    }
+
+}
+
+@media (max-width: 525px) {
+    .company-history {
+        justify-content: start;
+        padding: 20px 10px 0 20px;
+    }
+
+    .giving-back {
+        justify-content: start;
+        padding: 20px 10px 0 20px;
+    }
+
+    .hero-our-story>div>ul>li>img {
+        height: 500px;
+    }
+
+    .slider-slogan-contain-1 {
+        margin-bottom: -50px;
+        padding: 10px 5px 10px 5px;
+        height: auto;
+        width: auto;
+    }
+
+    .slide {
+        height: 800px;
+    }
+
+    .slider-heading-1-contain {
+        margin: 0;
+    }
+
+    .slider-heading-1-contain-b {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 0px;
+    }
+
+    .slider-slogan-1 {
+        font-size: 24px;
+        height: auto;
+        margin: 0;
+    }
+
+    .slider-heading-1-contain {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .slider-heading-1-contain>h4 {
+        margin: 0;
+    }
+
+    .slider-slogan-contain-2 {
+        margin: 20px 10px 0 10px;
+        padding: 10px 5px 10px 5px;
+        height: auto;
+        width: auto;
+    }
+
+    .slider-slogan-2 {
+        font-size: 24px;
+    }
+
+    .slider-heading-3-h-contain>h4 {
+        font-size: 50px;
+        -webkit-text-stroke-width: 2px;
+
+    }
+
+
+}

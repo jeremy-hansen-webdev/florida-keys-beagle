@@ -1,0 +1,785 @@
+/* 
+Theme Name: Florida Keys Beagle
+Description: A vibrant and playful WordPress theme inspired by the sunny Florida Keys and the spirited nature of beagles.
+Version: 1.0
+Author: Jeremy Hansen
+Text Domain: florida-keys-beagle
+Tags: beagle, florida keys, playful, vibrant, e-commerce
+*/
+
+/* A comprehensive CSS Reset to provide a clean slate for your styling.
+    This file removes all default browser margins, paddings, and other styles,
+    ensuring consistent rendering across all browsers.
+*/
+
+/* Box-sizing is a fundamental property for layout. 
+    By setting it to `border-box`, the padding and border are included 
+    in the element's total width and height, which makes building layouts
+    much more intuitive and predictable.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove the default margin from all elements. This is one of the most
+    common browser inconsistencies and a major reason for using a reset.
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the root font size to a sane value and define a global font family.
+    This also helps with accessibility and consistency.
+*/
+html,
+body {
+    font-family: sans-serif;
+    /* Fallback font */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Remove default list styles (bullets and numbers) and ensure they have no
+    padding or margin. You can re-add these manually later if needed.
+*/
+ol,
+ul {
+    list-style: none;
+}
+
+/* For images, videos, and other media, set `max-width: 100%` and `height: auto`
+    to make them responsive by default. This prevents them from overflowing
+    their containers.
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Ensure form elements and buttons inherit the font size and family.
+    This prevents inconsistencies and makes them easier to style.
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+
+
+/* Global */
+h2 {
+    color: #000;
+    text-align: center;
+
+    /* Tchig Mono-H2-42/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 41px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+h3 {
+    color: #000;
+    /* Tchig Mono-H3-32/Regular */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+h4 {
+    color: #000;
+
+    /* Tchig Mono-p3-16/Bold */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+p {
+    color: #000;
+
+    /* Able-P3-18/Regular */
+    font-family: Abel;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+a,
+span {
+    color: #000;
+
+    /* Able-P3-18/Regular */
+    font-family: Abel;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+/* Nav bar and Footer desktop */
+
+header {
+    align-items: center;
+    background-color: #DBE6C9;
+    height: 75px;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 115px;
+    height: 115px;
+    padding-top: 20px;
+    z-index: 10;
+
+}
+
+.main-menu-container {
+    width: 100%;
+    display: flex;
+    padding-top: 29px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-menu {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.main-menu-customer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding-right: 38px;
+
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-details {
+    width: 125px;
+    margin-left: 23px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-details-account {
+    margin-left: 12px;
+    text-decoration: none;
+
+}
+
+.account-container {
+    position: relative;
+    padding-top: 15px;
+}
+
+
+
+.account-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #DBE6C9;
+    padding: 10px;
+    width: 125px;
+    z-index: 20;
+}
+
+.account-container:hover .account-dropdown {
+    display: flex;
+}
+
+#cart {
+    margin-top: -15px;
+}
+
+#account {
+    margin-top: -15px;
+    display: none;
+}
+
+#log-in {
+    width: 125px;
+}
+
+#log-in,
+#shop,
+#shop-all {
+    border: 1px solid #DEAFB8;
+    border-radius: 15px;
+}
+
+.hamburger-icon {
+    display: none;
+}
+
+/* footer */
+footer {
+    background: var(--50, #FBFBEE);
+    height: 131px;
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 18px 43px 18px 0;
+
+}
+
+.footer-1 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 16px 0 0 43px;
+
+}
+
+.footer-3 {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.instagram {
+    margin-left: 20px;
+    width: 50px;
+}
+
+.facebook {
+    width: 50px;
+}
+
+/* Home */
+
+/* Hero Section */
+
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 692px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    background-image: url(../../uploads/2025/08/Hero-Image.jpg);
+    box-shadow: 0 8px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.tag {
+    align-self: center;
+    margin-top: 116px;
+    margin-left: 120px;
+}
+
+.tag-line {
+    height: 159px;
+    width: 159px;
+    padding: 37px 0;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background: var(--50, #FBFBEE);
+    box-shadow: -4px 4px 5.2px 0 #000;
+}
+
+.tag-line-text {
+    color: #000;
+    text-align: center;
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.title-line {
+    color: var(--50, #E5EDC8);
+    text-align: left;
+    text-shadow: -5px 1px 13.1px #000;
+    font-family: "Tchig Mono";
+    font-size: 86px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-left: 51px;
+}
+
+#beagle-style {
+    margin-left: 134px;
+}
+
+.shop-all-button {
+    display: inline-flex;
+    padding: 18px 48px 17px 48px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    border: 3px solid #EA8C2D;
+    background: var(--400, #C97E8C);
+    margin-left: 42px;
+    margin-top: 89px;
+}
+
+.shop-all-text {
+    color: #FFF;
+
+    /* Tchig Mono-H3-32/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* Testimonial Section */
+
+
+
+.testimonials {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+    margin-top: 80px;
+}
+
+.testimonials-review {
+    width: 438px;
+    height: 277px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: var(--50, #D8D2C9);
+    padding: 25px 24px 0 34px;
+    margin-bottom: 20px;
+
+
+}
+
+#testimonial-2 {
+    background: var(--200, #F8F7DF);
+}
+
+#testimonial-3 {
+    background: var(--50, #DBE6C9);
+}
+
+.reviewers {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    margin-left: -24px;
+}
+
+.person {
+    display: flex;
+    flex-direction: row;
+}
+
+.pet {
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+    margin-bottom: -10px;
+    margin-left: -150px;
+}
+
+.reviewer-person-name {
+    margin-left: 0px;
+    color: #000;
+
+    /* Able-H1-24/Regular */
+    font-family: Abel;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.reviewer-pet-name {
+    align-self: center;
+    margin-left: 10px;
+    margin-top: -50px;
+    color: #000;
+    /* Able-P3-16/Regular */
+    font-family: Abel;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+/* Shopping Section */
+
+.shopping {
+
+    margin-top: 80px;
+}
+
+/* Donation Section */
+
+.donation-section {
+    position: relative;
+    width: 100%;
+    height: 863px;
+    overflow: hidden;
+    margin-top: 31px;
+}
+
+.donation-bg-video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.donation-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+    color: #fff;
+    /* or any color for contrast */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.donation-title {
+    color: #FFF;
+    text-align: center;
+
+    /* Tchig Mono-H2-42/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 41px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.title1-background {
+    min-height: 93px;
+    width: 100%;
+    padding: 17px 118px 27px 117px;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.48);
+}
+
+.title2-background {
+    margin-top: 120px;
+    display: flex;
+    height: 75px;
+    padding: 18px 9px 19px 9px;
+
+    flex-shrink: 0;
+    border-radius: 11px;
+    background: linear-gradient(90deg, rgba(201, 126, 140, 0.60) 0%, rgba(99, 62, 69, 0.60) 100%);
+}
+
+.donation-tagline {
+    color: #FFF;
+    text-align: center;
+
+    /* Tchig Mono-H3-32/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#page>section.shopping>div.carousel-container {
+    display: flex;
+}
+
+.home-product-title {
+    margin-top: 120px;
+}
+
+#page>section.shopping>div.carousel-container>div>div>ul {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 600px;
+    gap: 16px;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    align-items: stretch;
+}
+
+
+#page>section.shopping>div.carousel-container>div>div>ul::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+
+.carousel-inner li {
+    width: 100%;
+    margin-bottom: 16px;
+    list-style: none;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    height: 410px;
+    padding: 179px 10px 200.43px 10;
+    align-items: center;
+    border-radius: 13px;
+    background: var(--50, #fbfbee62);
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+
+    /* Carousel Section */
+
+    .main-menu {
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: column;
+        gap: 15px;
+        margin-top: -20px;
+        margin-left: 5%;
+    }
+
+    .logo {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    /* Hero Section */
+    .hero-section {
+        height: 500px;
+        background-position: right;
+        justify-content: space-between;
+    }
+
+    .tag {
+        margin-top: 5px;
+    }
+
+    .tag-line {
+        height: 120px;
+        width: 120px;
+    }
+
+    .tag-line-text {
+        font-size: 20px;
+        margin-top: -10px;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -200px;
+    }
+
+    .title-line {
+        margin: 0;
+        font-size: 50px;
+    }
+
+
+    #beagle-style {
+
+        margin-left: 0;
+    }
+
+    .shop-all {
+        display: flex;
+        justify-content: center;
+    }
+
+    .shop-all-button {
+        margin: 0;
+        padding: 10px 20px;
+    }
+
+    .testimonials-review {
+        width: 95%;
+        margin-bottom: 20px;
+    }
+
+    /* Carousel Section */
+
+    .carousel-inner {
+        display: flex;
+        gap: 16px;
+    }
+
+    .carousel-item {
+        flex: 0 0 0 auto;
+        width: 304px;
+        height: 421px;
+        margin-right: 16px;
+    }
+
+
+    /* Header */
+    .main-menu {
+        display: none;
+    }
+
+    .hamburger-icon {
+        display: block;
+
+    }
+
+    .mobile-menu-container {
+        background-color: #dbe6c8;
+        padding: 15px 15px 15px 15px;
+        z-index: 10;
+    }
+
+    .main-menu-mobile {
+        display: grid;
+        grid-auto-flow: row;
+        gap: 15px;
+    }
+
+    .nav-details-mobile {
+        text-align: center;
+    }
+
+    #log-in {
+        display: none;
+    }
+
+    #log-in-mobile {
+        border: 1px solid #DEAFB8;
+        border-radius: 15px;
+    }
+
+    .main-menu-container {
+        flex-direction: column;
+        align-items: flex-end;
+
+    }
+
+    .logo {
+        padding-top: 0;
+        margin-top: -18px;
+        margin-left: 5%;
+
+    }
+
+    .hamburger-icon {
+        width: 40px;
+    }
+
+    .hamburger-menu {
+        margin-left: 20px;
+        margin-top: -10px;
+    }
+
+    /* Donation Section */
+    .donation-title {
+        font-size: 24px;
+    }
+
+
+    .donation-bg-video {
+        height: 750px;
+    }
+
+    .title1-background {
+        padding: 0;
+        padding-top: 20px;
+    }
+
+    .title2-background {
+        padding: 10px 0 0 10px
+    }
+
+    .donation-tagline {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+        height: 275px;
+        padding-bottom: 30px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .footer-1 {
+        padding: 20px 0 20px 0;
+        align-items: center;
+    }
+
+    .footer-2 {
+        margin-bottom: 20px;
+    }
+
+
+
+
+
+}

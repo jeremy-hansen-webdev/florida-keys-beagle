@@ -1,0 +1,162 @@
+.attachment-woocommerce_thumbnail {
+    height: 417px;
+    width: 324px;
+    object-fit: cover;
+}
+
+.site-main {
+    display: flex;
+    flex-direction: column;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 47px 42px 148px 42px;
+    gap: 20px;
+}
+
+.products>li {
+    display: flex;
+    flex-direction: column;
+    height: 563px;
+    width: 324px;
+    ;
+}
+
+.woocommerce-LoopProduct-link {
+    display: flex;
+    flex-direction: column;
+}
+
+.woocommerce-LoopProduct-link>h2 {
+    margin-top: 10px;
+}
+
+.onsale {
+    display: none;
+}
+
+.woocommerce-loop-product__title {
+    text-align: start;
+    text-wrap: wrap;
+    max-width: fit-content;
+    color: #000;
+
+    /* Tchig Mono-p1-24/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.shop-all-title {
+    text-align: start;
+    margin: 47px 0 11px 42px;
+}
+
+.button {
+    border-radius: 11.455px;
+    background: #000;
+
+    height: 35px;
+    padding: 3px 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+
+    /* Tchig Mono-p1-24/Bold */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.showcase-item-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 60px;
+    margin-left: 42px;
+}
+
+.shop-category-title {
+    text-align: start;
+    margin: 40px 0 47px 42px;
+    color: #000;
+
+    /* Tchig Mono-H1-48/Regular */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.showcase-item-content>p>img {
+    height: 458px;
+    width: 412px;
+}
+
+.showcase-item-content>h3 {
+    color: #000;
+
+    /* Tchig Mono-p1-24/Medium */
+    font-family: var(--font-family-title, "Tchig Mono");
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.showcase-item-content>button {
+    display: flex;
+    color: white;
+    height: 35px;
+    padding: 3px 19px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11.455px;
+    background: #000;
+    margin-top: 28px;
+}
+
+@media screen and (max-width: 768px) {
+    .products {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .products>li {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .attachment-woocommerce_thumbnail {
+        height: auto;
+        width: 100%;
+    }
+
+    .showcase-item-content>p>img {
+        height: auto;
+        width: 100%;
+    }
+
+    .shop-category-title {
+        margin-top: 80px;
+        font-size: 32px;
+    }
+
+}

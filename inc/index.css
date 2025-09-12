@@ -1,0 +1,134 @@
+.featured-post {
+    display: flex;
+    flex-direction: column;
+    margin: 139px 57px 16px 43px;
+}
+
+
+body .learn-more {
+    margin-top: 10px;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 800;
+}
+
+
+.featured-top-section {
+    display: flex;
+    padding-left: 57px;
+    margin-bottom: 16px;
+}
+
+.featured-top-section>div {
+    margin-left: 117px;
+}
+
+.list-title {
+    margin-bottom: 45px;
+    margin-left: 49px;
+    text-align: start;
+}
+
+.list-posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 90px;
+}
+
+.section-post {
+    width: 412px;
+    margin-bottom: 45px;
+    background: var(--50, #FBFBEE);
+
+}
+
+.image-post {
+    width: 412px;
+    height: 458px;
+}
+
+.content-container {
+    padding: 10px 14px 7px 14px;
+}
+
+
+
+.title-content {
+    padding: 7px 9px;
+}
+
+.list-title {
+    margin-top: 57px;
+}
+
+.section-post>a {
+    padding: 20px 0 0 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .featured-post {
+        margin: 20px 15px 0 15px;
+    }
+
+    .featured-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .featured-top-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        text-align: start;
+    }
+
+    .featured-top-section>div {
+        margin: 0px 0 0 0;
+    }
+
+    .featured-container>img {
+        object-fit: cover;
+        max-width: 100%;
+        height: auto;
+        height: 400px;
+        width: 100%;
+    }
+
+    .featured-top-section>h2 {
+        margin: 20px 0 20px 0;
+        text-align: start;
+        font-size: 24px;
+    }
+
+    .featured-top-section>div>p {
+        padding: 0;
+    }
+
+    .section-post {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .list-title {
+        margin: 40px 0 20px 0;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .content-container>h4 {
+        font-size: 20px;
+    }
+
+    .learn-more {
+        margin-top: 10px;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: 800;
+    }
+
+
+
+}
