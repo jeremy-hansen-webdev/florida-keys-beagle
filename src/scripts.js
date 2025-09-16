@@ -115,19 +115,18 @@ window.addEventListener('load', () => {
 
 
     // When page loads set event listener to show images based on color of button you select
-    list_items_color_buttons.forEach((item, index) => {
+    list_items_color_buttons.forEach((item, colorIdx) => {
         item.addEventListener('click', () => {
             list_items_color_buttons.forEach(li => li.classList.remove('selected'));
             item.classList.add('selected');
-            // console.log('Selected color option index:', index);
-            const image_selector_start = (number_of_rows_images * (1 + index)) - number_of_rows_images;
-            const image_selector_end = image_selector_start + number_of_rows_images;
-            // console.log(image_selector_end);
-            // console.log(image_selector_start);
 
-            list_items_images.forEach((img, index) => {
-                img.style.display = index >= image_selector_start && index < image_selector_end ? 'block' : 'none';
-            })
+            // Calculate the start and end index for images of this color
+            const startIdx = colorIdx * number_of_rows_images;
+            const endIdx = startIdx + number_of_rows_images;
+
+            list_items_images.forEach((img, imgIdx) => {
+                img.style.display = (imgIdx >= startIdx && imgIdx < endIdx) ? 'block' : 'none';
+            });
         });
     });
 
@@ -183,6 +182,7 @@ window.addEventListener('load', () => {
             progress_bar_3.classList.add('progress_bar_active');
         }
     }
+    // Creating colors for color buttons on single product page
     const colorOptions = document.querySelectorAll('ul[data-attribute_name="attribute_colors"]>li');
     function get_hex_array() {
         // create colors swatches to provide options for color products
@@ -239,11 +239,86 @@ window.addEventListener('load', () => {
         console.error('Error fetching hex colors:', error);
     });
 
+
+    let test_num = 0;
+    // Creating color picker for color buttons on all product page
+    const woocommerce_thumbnail_images = document.querySelectorAll('.woocommerce-product-gallery-thumbnails .product-gallery-thumbnail');
+    const colorOptionsAllProducts = document.querySelectorAll('.color-swatch');
+    if (woocommerce_thumbnail_images.length > 0) {
+        const imagesLoaded = Array.from(woocommerce_thumbnail_images).map(img => {
+            return new Promise((resolve, reject) => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    resolve();
+                } else {
+                    img.onload = () => resolve();
+                    img.onerror = () => reject(new Error('Failed to load image: ' + img.src));
+                }
+            });
+        });
+
+        Promise.all(imagesLoaded).then(() => {
+            woocommerce_thumbnail_images.forEach((img, idx) => {
+                const imgSrc = img.src;
+                let image = new Image();
+                image.src = imgSrc + '?cache_buster=' + new Date().getTime();
+                image.onload = () => {
+                    const hexColor = get_hex_colors(image);
+                    img.style.backgroundColor = hexColor;
+                    if (colorOptionsAllProducts[idx]) {
+                        colorOptionsAllProducts[idx].style.backgroundColor = hexColor;
+                    }
+                };
+                image.onerror = () => {
+                    console.error('Failed to load image: ' + imgSrc);
+                };
+            });
+        }).catch(error => {
+            console.error('Error waiting for images to load:', error);
+        });
+    }
+
+    // when you click on a color swatch it changes the main image to that color
+    let productMainImage = document.querySelectorAll('#main > ul > li > a> img');
+    const productImages = document.querySelectorAll('.product-gallery-thumbnail')
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+
+    console.log('productMainImage:', productMainImage);
+    if (productMainImage.length > 0 && productImages.length > 0 && colorSwatches.length > 0) {
+        const imagesLoaded = Array.from(productImages).map(img => {
+            return new Promise((resolve, reject) => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    resolve();
+                } else {
+                    img.onload = () => resolve();
+                    img.onerror = () => reject(new Error('Failed to load image: ' + img.src));
+                }
+            });
+        });
+
+        Promise.all(imagesLoaded).then(() => {
+            colorSwatches.forEach((swatch, index) => {
+                swatch.addEventListener('click', () => {
+                    if (productMainImage[swatch.id]) {
+                        productMainImage[Number(swatch.id)].src = productImages[index + Number(swatch.id) + 1].src;
+                        colorSwatches.forEach(s => s.classList.remove('selected'));
+                        swatch.classList.add('selected');
+                        console.log('clicked image index:', swatch.id - 1);
+                        console.log('clicked color index:', index);
+
+                    }
+                });
+            });
+        }).catch(error => {
+            console.error('Error waiting for product images to load:', error);
+        });
+    }
+
+    const sizeOptions = document.querySelectorAll('.size-options-container .size-option');
+    sizeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            sizeOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            console.log('Selected size:', option.id);
+        });
+    });
 });
-
-
-
-
-// A helper function to convert RGB to a hex string
-
-

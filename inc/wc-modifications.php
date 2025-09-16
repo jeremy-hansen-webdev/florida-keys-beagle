@@ -93,8 +93,6 @@ function fkb_wc_modify(){
 
     // Shop All Page
     
-
-
         // retrieve categories on top
         function showcase_items(){
             $showcase_items = new WP_Query(array(
