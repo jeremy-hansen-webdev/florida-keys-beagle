@@ -116,31 +116,6 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	do_action( 'woocommerce_after_shop_loop_item_title' );
 
 	// Add to Cart Button with color and size variants
-	if ( $product->is_type( 'variable' ) ) {
-		$available_variations = $product->get_available_variations();
-		echo '<form class="add-to-cart-variants" method="post" action="' . esc_url( get_permalink( $product->get_id() ) ) . '">';
-		// Color selector
-		if ( !empty($color_options) ) {
-			echo '<select name="attribute_colors" class="variant-select variant-color">';
-			echo '<option value="">Choose a color</option>';
-			foreach ( $color_options as $color ) {
-				echo '<option value="' . esc_attr($color) . '">' . esc_html($color) . '</option>';
-			}
-			echo '</select>';
-		}
-		// Size selector
-		if ( !empty($size_options) ) {
-			echo '<select name="attribute_sizes" class="variant-select variant-size">';
-			echo '<option value="">Choose a size</option>';
-			foreach ( $size_options as $size ) {
-				echo '<option value="' . esc_attr($size) . '">' . esc_html($size) . '</option>';
-			}
-			echo '</select>';
-		}
-		echo '<input type="hidden" name="add-to-cart" value="' . esc_attr( $product->get_id() ) . '" />';
-		echo '<button type="submit" class="button add-to-cart-button">Add to cart</button>';
-		echo '</form>';
-	} else {
-		woocommerce_template_loop_add_to_cart();
-	}
 
+	
+	do_action( 'woocommerce_after_shop_loop_item' );
