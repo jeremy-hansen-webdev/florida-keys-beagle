@@ -14,7 +14,7 @@ if (menuToggle) {
                 mobileMenuContainer.style.display = 'none';
             }
         }
-        console.log('Hamburger menu toggled');
+
     });
 }
 
@@ -100,8 +100,6 @@ window.addEventListener('load', () => {
     // getting the amount of rows per image set by dividing color buttons to images in image gallary
     const number_of_rows_images = count_images / count_color_buttons;
 
-    console.log('number_of_rows_images:', number_of_rows_images);
-
     // Setting all images to display none except for first color row
     list_items_images.forEach((img, idx) => {
         img.style.display = idx < number_of_rows_images ? 'block' : 'none';
@@ -132,7 +130,7 @@ window.addEventListener('load', () => {
     if (pathSegments.length > 0) {
         slug = pathSegments[pathSegments.length - 1];
     }
-    console.log('Current Slug:', slug);
+
     const progress_bar_1 = document.querySelector('#page > div > main > div > div > article > div > div.progress_bar_container > div:nth-child(1) > div');
     const progress_bar_2 = document.querySelector('#page > div > main > div > div > article > div > div.progress_bar_container > div:nth-child(2) > div');
     const progress_bar_3 = document.querySelector('#page > div > main > div > div > article > div > div.progress_bar_container > div:nth-child(3) > div');
@@ -226,7 +224,6 @@ window.addEventListener('load', () => {
         for (let i = 0; i < hexColor.length; i++) {
             if (hexColor[color_indx]) {
                 colorOptions[i].style.backgroundColor = hexColor[color_indx];
-                console.log(`index number` + i + ' index color: ' + hexColor[color_indx]);
             }
             color_indx = color_indx + Math.ceil(number_of_rows_images);
         }
@@ -261,6 +258,7 @@ window.addEventListener('load', () => {
                     img.style.backgroundColor = hexColor;
                     if (colorOptionsAllProducts[idx]) {
                         colorOptionsAllProducts[idx].style.backgroundColor = hexColor;
+
                     }
                 };
                 image.onerror = () => {
@@ -272,12 +270,14 @@ window.addEventListener('load', () => {
         });
     }
 
+
+
     // when you click on a color swatch it changes the main image to that color and provides size options
     let productMainImage = document.querySelectorAll('#main > ul > li > a> img');
     const productImages = document.querySelectorAll('.product-gallery-thumbnail')
     const colorSwatches = document.querySelectorAll('.color-swatch');
+    const colorSwatchesContainer = document.querySelector('.color-swatch-container');
 
-    console.log('productMainImage:', productMainImage);
     if (productMainImage.length > 0 && productImages.length > 0 && colorSwatches.length > 0) {
         const imagesLoaded = Array.from(productImages).map(img => {
             return new Promise((resolve, reject) => {
@@ -295,11 +295,31 @@ window.addEventListener('load', () => {
                 swatch.addEventListener('click', () => {
                     if (productMainImage[swatch.id]) {
                         productMainImage[Number(swatch.id)].src = productImages[index + Number(swatch.id) + 1].src;
-                        colorSwatches.forEach(s => s.classList.remove('selected'));
+                        const allSwatches = document.querySelectorAll('.color-swatch');
+                        const allSizeOptionsContainers = document.querySelectorAll('.size-option');
+                        const allSizeText = document.querySelectorAll('.swatch-size-text');
+                        allSizeText.forEach(t => t.innerHTML = '');
+                        allSizeOptionsContainers.forEach(container => container.classList.remove('selected'));
+                        allSwatches.forEach(s => s.classList.remove('selected'));
+
                         swatch.classList.add('selected');
                         let color_selected = document.querySelector('.color-swatch.selected');
                         document.querySelector('.add-to-cart-color').innerHTML = '<p class="swatch-color-text">' + color_selected.getAttribute('title') + '</p>';
+
+
+                        const sizeOptionContainers = document.querySelectorAll(`.size-options-container.product-index-${swatch.id}`)
+
+                        sizeOptionContainers.forEach(my_option => {
+                            let my_selector = color_selected.getAttribute('title') + swatch.id;
+                            if (my_option.id == my_selector) {
+                                my_option.title = 'selected';
+                            } else {
+                                my_option.title = 'non-selected';
+
+                            }
+                        });
                     }
+
                 });
             });
         }).catch(error => {
@@ -313,7 +333,6 @@ window.addEventListener('load', () => {
             sizeOptions.forEach(opt => opt.classList.remove('selected'));
             option.classList.add('selected');
             document.querySelector('.add-to-cart-size').innerHTML = '<p class="swatch-size-text">' + option.id + '</p>';
-            console.log('Selected size:', option.id);
         });
     });
 
@@ -337,32 +356,52 @@ window.addEventListener('load', () => {
                 attribute_sizes: size_selected_value,
             }
         }
-        jQuery.ajax({
-            type: "post",
-            url: `${window.location.origin}/wp-admin/admin-ajax.php`,
-            data: {
-                action: "custom_add_to_cart",
-                ajax_data: myData
-            },
-            complete: function (response) {
-                console.log(response);
-                // After successful add to cart
-                jQuery.ajax({
-                    url: myAjax.ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'get_cart_count'
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            jQuery('#cart > span').text(response.data);
-                        }
-                    }
-                });
 
+        if (myData['variation_data']['attribute_colors'] && myData['variation_data']['attribute_sizes']) {
+            jQuery.ajax({
+                type: "post",
+                url: `${window.location.origin}/wp-admin/admin-ajax.php`,
+                data: {
+                    action: "custom_add_to_cart",
+                    ajax_data: myData
+                },
+                complete: function (response) {
+                    // After successful add to cart
+                    jQuery.ajax({
+                        url: myAjax.ajaxurl,
+                        type: 'POST',
+                        data: {
+                            action: 'get_cart_count'
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                jQuery('#cart > span').text(response.data);
+                            }
+                        }
+                    });
+
+                }
+            });
+        } else if (!myData['variation_data']['attribute_colors']) {
+
+            const selectWarning = document.querySelector('.error-message-color');
+            if (selectWarning) {
+                selectWarning.style.display = 'block';
+                setTimeout(() => {
+                    selectWarning.style.display = 'none';
+                }, 3000); // Hide after 3 seconds
             }
-        })
-    })
+
+        } else if (!myData['variation_data']['attribute_sizes']) {
+            const selectWarning = document.querySelector('.error-message-size');
+            if (selectWarning) {
+                selectWarning.style.display = 'block';
+                setTimeout(() => {
+                    selectWarning.style.display = 'none';
+                }, 3000); // Hide after 3 seconds
+            }
+        }
+    });
 
 
 

@@ -7,8 +7,26 @@
 
 }
 
+.size-option[title="none"] {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
 
-.product>a>img {
+.add-to-cart-color,
+.add-to-cart-size {
+    display: none;
+}
+
+.size-options-container[title='non-selected'] {
+    display: none;
+}
+
+.product-id-text {
+    display: none;
+}
+
+.size-options-container .product>a>img {
     height: 458px !important;
 }
 

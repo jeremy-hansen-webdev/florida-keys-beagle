@@ -1,4 +1,14 @@
 <?php
+if (!function_exists('is_size_available')) {
+	function is_size_available($size, $color, $variation_options ){
+		foreach ($variation_options as $key => $variation) {
+			if ($variation['size'] == $size && $variation['color'] == $color) {
+				return $variation;
+			}
+		}
+		return false;
+	}
+}
 /**
  * The template for displaying product content within loops
  *
@@ -66,43 +76,35 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	}
 	echo '</div>';
 
-	// sets size options
-	// $size_options = $attributes['sizes']->get_options();
-
-
+// sets size options
 	$size_count = 0;
 	$var_count = 0;
+	$size_id_count = 0;
 	$sizes = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
 	
 foreach ($color_options as $color) {
 	$size_count = 0;
-	$variation = $variation_options[$var_count];
-	$variation_size = $variation['size'];
+	$product_index = isset($wp_query->current_post) ? $wp_query->current_post : 0;
+	if ($var_count == 0) {
+		echo '<div class="size-options-container product-index-' . $product_index . '" title="selected" id="'. $color . $product_index . '">';
+	} else {
+		echo '<div class="size-options-container product-index-' . $product_index . '" title="non-selected" id="'. $color . $product_index . '">';
+	}
+	
 	while ($size_count < count($sizes)) {
 		// You need to define $variation and $sizes properly; here is a placeholder logic
 		$size = $sizes[$size_count];
-		
-		echo '<div class="size-options-container">';
+		$my_info = is_size_available($size, $color, $variation_options);
 		// create a function that sees if $size is in $variation_options.
-		if (is_size_available($size, $color, $variation_options)) {
-			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="' . esc_attr($variation['id']) . '" id="' . esc_attr($variation['size']) . '">' . esc_html($variation['size']) . '</span>';
+		if ($my_info) {
+			echo '<span class="size-option size-color-' . $my_info['color'] . '" title="' . esc_attr($my_info['id']) . '" id="' . esc_attr($my_info['size']) . '">' . esc_html($my_info['size']) . '</span>';
 		} else {
 			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="none" id="' . esc_attr($sizes[$size_count]) . '">' . esc_html($sizes[$size_count]) . '</span>';
 		}
-		echo '</div>';
-
 		$size_count++;
 	}
+	echo '</div>';
 	$var_count++;
-}
-
-function is_size_available($size, $color, $variation_options ){
-	foreach ($variation_options as $key => $variation) {
-		if ($variation['size'] == $size && $variation['color'] == $color) {
-			return true;
-		}
-	}
-	return false;
 }
 	
 	$attachment_ids = $product->get_gallery_image_ids();
@@ -155,6 +157,8 @@ function is_size_available($size, $color, $variation_options ){
 
 	<input class="product-id-text" value="' . esc_attr( $product->get_id() ) . '">
 	<button class="ajax-add-to-cart">Add to Cart</button>
+	<p class="error-message-color" style="color: red; display:none;">Please select a color</p>
+	<p class="error-message-size" style="color: red; display:none;">Please select a size</p>
 	';
 
 
