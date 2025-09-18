@@ -11,6 +11,10 @@ function fkb_scripts(){
 	wp_enqueue_style('billing', get_template_directory_uri() . '/inc/billing.css', array('fkb-style'), '1.0', 'all');
 	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css', array(), '6.5.0', 'all');
 	wp_enqueue_script('fkb-scripts', get_template_directory_uri() . '/src/scripts.js', array('jquery'), '1.0', true);
+	// Localize script to provide AJAX URL
+	wp_localize_script('fkb-scripts', 'myAjax', array(
+		'ajaxurl' => admin_url('admin-ajax.php')
+	));
 
 }
 
@@ -63,3 +67,83 @@ add_filter( 'woocommerce_output_related_products_args', function( $args ) {
     $args['posts_per_page'] = 6; // Change 6 to your desired number
     return $args;
 });
+
+// Adds ajax add to cart request for product pages
+
+function add_to_cart_button_clicked(){
+	$my_data= $_POST['ajax_data'];
+	$product_id = intval($my_data['product_id']);
+	$quantity = intval($my_data['quantity']);
+	$attributes = array(
+		'attribute_colors' => $my_data['variation_data']['attribute_colors'],
+		'attribute_sizes' => $my_data['variation_data']['attribute_sizes']
+	);
+
+	$variation_id = get_variation_id_by_attributes($product_id, $attributes);
+
+	$added_to_cart = WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $attributes );
+
+	if($added_to_cart){
+		get_cart_count();
+	} else{
+	}
+}
+add_action('wp_ajax_custom_add_to_cart', 'add_to_cart_button_clicked');
+add_action('wp_ajax_nopriv_custom_add_to_cart', 'add_to_cart_button_clicked');
+
+function set_size_optios_available_clicked(){
+	
+}
+
+add_action('wp_ajax_custom_add_to_cart', 'set_size_optios_available_clicked');
+add_action('wp_ajax_nopriv_custom_add_to_cart', 'set_size_optios_available_clicked');
+// gets the variation id
+function get_variation_id_by_attributes( $product_id, $variation_data ) {
+	$product = wc_get_product( $product_id );
+	if ( ! $product || $product->get_type() !== 'variable' ) {
+		return 0;
+	}
+	foreach ( $product->get_available_variations() as $variation ) {
+		$found = true;
+		foreach ( $variation_data as $attr => $value ) {
+			if (
+				!isset($variation['attributes'][$attr]) ||
+				!is_string($variation['attributes'][$attr]) ||
+				!is_string($value) ||
+				strtolower($variation['attributes'][$attr]) !== strtolower($value)
+			) {
+				$found = false;
+				break;
+			}
+		}
+		if ( $found ) {
+			return $variation['variation_id'];
+		}
+	}
+	return 0;
+}
+
+function get_variations_by_product_id($product_id) {
+    $product = wc_get_product($product_id);
+    $variations = [];
+
+    if ($product && $product->is_type('variable')) {
+        foreach ($product->get_available_variations() as $variation) {
+            $variations[] = [
+                'id'    => $variation['variation_id'],
+                'size'  => isset($variation['attributes']['attribute_sizes']) ? $variation['attributes']['attribute_sizes'] : '',
+                'color' => isset($variation['attributes']['attribute_colors']) ? $variation['attributes']['attribute_colors'] : '',
+            ];
+        }
+    }
+
+    return $variations;
+	}
+
+// Refreshes Cart
+function get_cart_count() {
+    wp_send_json_success(WC()->cart->get_cart_contents_count());
+}
+add_action('wp_ajax_get_cart_count', 'get_cart_count');
+add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count');
+

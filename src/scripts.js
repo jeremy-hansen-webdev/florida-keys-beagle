@@ -97,11 +97,6 @@ window.addEventListener('load', () => {
 
     const list_items_color_buttons = document.querySelectorAll('ul[data-attribute_name="attribute_colors"]>li');
     const count_color_buttons = list_items_color_buttons.length;
-
-    // testing counts
-    // console.log('count_color_buttons:', count_color_buttons);
-    // console.log('count_images:', count_images);
-
     // getting the amount of rows per image set by dividing color buttons to images in image gallary
     const number_of_rows_images = count_images / count_color_buttons;
 
@@ -277,7 +272,7 @@ window.addEventListener('load', () => {
         });
     }
 
-    // when you click on a color swatch it changes the main image to that color
+    // when you click on a color swatch it changes the main image to that color and provides size options
     let productMainImage = document.querySelectorAll('#main > ul > li > a> img');
     const productImages = document.querySelectorAll('.product-gallery-thumbnail')
     const colorSwatches = document.querySelectorAll('.color-swatch');
@@ -302,9 +297,8 @@ window.addEventListener('load', () => {
                         productMainImage[Number(swatch.id)].src = productImages[index + Number(swatch.id) + 1].src;
                         colorSwatches.forEach(s => s.classList.remove('selected'));
                         swatch.classList.add('selected');
-                        console.log('clicked image index:', swatch.id - 1);
-                        console.log('clicked color index:', index);
-
+                        let color_selected = document.querySelector('.color-swatch.selected');
+                        document.querySelector('.add-to-cart-color').innerHTML = '<p class="swatch-color-text">' + color_selected.getAttribute('title') + '</p>';
                     }
                 });
             });
@@ -318,7 +312,60 @@ window.addEventListener('load', () => {
         option.addEventListener('click', () => {
             sizeOptions.forEach(opt => opt.classList.remove('selected'));
             option.classList.add('selected');
+            document.querySelector('.add-to-cart-size').innerHTML = '<p class="swatch-size-text">' + option.id + '</p>';
             console.log('Selected size:', option.id);
         });
     });
+
+    // Ajax add to cart functionality for color and size variants
+    const myAjaxButton = document.querySelector('.ajax-add-to-cart');
+
+
+    myAjaxButton.addEventListener('click', () => {
+        const color_selected_elem = document.querySelector('.swatch-color-text');
+        const size_selected_elem = document.querySelector('.swatch-size-text');
+        const productIdElem = document.querySelector('.product-id-text');
+        const productId = productIdElem.value;
+
+        const color_selected_value = color_selected_elem ? color_selected_elem.textContent : '';
+        const size_selected_value = size_selected_elem ? size_selected_elem.textContent : '';
+        myData = {
+            product_id: productId,
+            quantity: 1,
+            variation_data: {
+                attribute_colors: color_selected_value,
+                attribute_sizes: size_selected_value,
+            }
+        }
+        jQuery.ajax({
+            type: "post",
+            url: `${window.location.origin}/wp-admin/admin-ajax.php`,
+            data: {
+                action: "custom_add_to_cart",
+                ajax_data: myData
+            },
+            complete: function (response) {
+                console.log(response);
+                // After successful add to cart
+                jQuery.ajax({
+                    url: myAjax.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'get_cart_count'
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            jQuery('#cart > span').text(response.data);
+                        }
+                    }
+                });
+
+            }
+        })
+    })
+
+
+
 });
+
+

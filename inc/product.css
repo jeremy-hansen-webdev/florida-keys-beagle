@@ -1,8 +1,12 @@
 /* Shop All */
 .products>li {
     width: 412px !important;
+    margin: 0 0 62px 0 !important;
+    padding: 0 !important;
+    height: auto;
 
 }
+
 
 .product>a>img {
     height: 458px !important;
@@ -36,10 +40,7 @@
     width: 100% !important;
 }
 
-.products>li {
-    margin: 0 0 62px 0 !important;
-    padding: 0 !important;
-}
+
 
 /* Single Product */
 

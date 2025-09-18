@@ -48,6 +48,8 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 
 	// Showcase Image
 
+
+
 	$image_url = wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' );
 	echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '">';
 	echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $product->get_name() ) . '" class="product-gallery-thumbnail" />';
@@ -56,6 +58,8 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	// sets color swatches
 	$color_options = $attributes['colors']->get_options();
 	$count_colors = count($color_options);
+	$variation_options = get_variations_by_product_id($product->get_id());
+	
 	echo '<div class="color-swatch-container">';
 	foreach ($color_options as $index => $color) {
 		echo '<div class="color-swatch" id="'. ($wp_query->current_post) . '" title="' . esc_attr($color) . '"></div>';
@@ -63,15 +67,43 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	echo '</div>';
 
 	// sets size options
-	$size_options = $attributes['sizes']->get_options();
-	if (count($size_options) > 0) {
+	// $size_options = $attributes['sizes']->get_options();
+
+
+	$size_count = 0;
+	$var_count = 0;
+	$sizes = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
+	
+foreach ($color_options as $color) {
+	$size_count = 0;
+	$variation = $variation_options[$var_count];
+	$variation_size = $variation['size'];
+	while ($size_count < count($sizes)) {
+		// You need to define $variation and $sizes properly; here is a placeholder logic
+		$size = $sizes[$size_count];
+		
 		echo '<div class="size-options-container">';
-		foreach ($size_options as $size) {
-			echo '<span class="size-option" id="' . esc_attr($size) . '">' . esc_html($size) . '</span>';
+		// create a function that sees if $size is in $variation_options.
+		if (is_size_available($size, $color, $variation_options)) {
+			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="' . esc_attr($variation['id']) . '" id="' . esc_attr($variation['size']) . '">' . esc_html($variation['size']) . '</span>';
+		} else {
+			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="none" id="' . esc_attr($sizes[$size_count]) . '">' . esc_html($sizes[$size_count]) . '</span>';
 		}
 		echo '</div>';
-	}
 
+		$size_count++;
+	}
+	$var_count++;
+}
+
+function is_size_available($size, $color, $variation_options ){
+	foreach ($variation_options as $key => $variation) {
+		if ($variation['size'] == $size && $variation['color'] == $color) {
+			return true;
+		}
+	}
+	return false;
+}
 	
 	$attachment_ids = $product->get_gallery_image_ids();
 	$count_images = count($attachment_ids);
@@ -117,5 +149,16 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 
 	// Add to Cart Button with color and size variants
 
-	
+	echo '
+	<div class="add-to-cart-color"></div>
+	<div class="add-to-cart-size"></div>
+
+	<input class="product-id-text" value="' . esc_attr( $product->get_id() ) . '">
+	<button class="ajax-add-to-cart">Add to Cart</button>
+	';
+
+
+
+
+
 	do_action( 'woocommerce_after_shop_loop_item' );
