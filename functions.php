@@ -9,7 +9,9 @@ function fkb_scripts(){
 	wp_enqueue_style('single-product', get_template_directory_uri() . '/inc/single-product.css', array('fkb-style'), '1.0', 'all');
 	wp_enqueue_style('cart', get_template_directory_uri() . '/inc/cart.css', array('fkb-style'), '1.0', 'all');
 	wp_enqueue_style('billing', get_template_directory_uri() . '/inc/billing.css', array('fkb-style'), '1.0', 'all');
+	wp_enqueue_style('received', get_template_directory_uri() . '/inc/received.css', array ('fkb-style'), '1.0', 'all');
 	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css', array(), '6.5.0', 'all');
+	
 	wp_enqueue_script('fkb-scripts', get_template_directory_uri() . '/src/scripts.js', array('jquery'), '1.0', true);
 	// Localize script to provide AJAX URL
 	wp_localize_script('fkb-scripts', 'myAjax', array(
@@ -147,3 +149,19 @@ function get_cart_count() {
 add_action('wp_ajax_get_cart_count', 'get_cart_count');
 add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count');
 
+/**
+ * Remove the default editor for a specific post type.
+ * This should be placed in your functions.php file or a custom plugin.
+ */
+function my_remove_editor_support() {
+    // Replace 'post' with the slug of your custom post type.
+    // Examples: 'page', 'product', or 'showcase-items'
+    $post_type_to_remove = 'showcase-items';
+
+    // Check if the current screen is the one we want to target.
+    // The conditional check is important to prevent unexpected behavior.
+    if (in_array($post_type_to_remove, array('post', 'page', 'showcase-items'))) {
+        remove_post_type_support($post_type_to_remove, 'editor');
+    }
+}
+add_action('admin_init', 'my_remove_editor_support');

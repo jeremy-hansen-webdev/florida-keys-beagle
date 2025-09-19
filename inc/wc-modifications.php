@@ -19,21 +19,22 @@ add_action('woocommerce_blocks_checkout_enqueue_data', 'fkb_progress_bar', 5);
 function fkb_progress_bar(){
     echo
 "    <div class='progress_bar_container'>
- 
+        <div>
             <a href='" . wc_get_cart_url() . "'>
-                <div class='progress_bar_active'></div>
+                <div class='progress_bar' id='cart/'></div>
                 <p>Review Order</p>
             </a>
-
+        </div>
         <div>
             <a href='" . wc_get_checkout_url() . "'>
-                <div class='progress_bar'></div>
+                <div class='progress_bar' id='checkout/'></div>
                 <p>Payment</p>
             </a>
         </div>
         <div>
-            <div class='progress_bar'></div>
-            <p>Conformation</p>
+            
+            <div class='progress_bar' id='checkout/order-received'></div>
+            <p>Confirmation</p>
         </div>
     </div>
     <div class='progress_border'></div>
@@ -61,6 +62,7 @@ function single_product_container_end(){
 }
 add_action('woocommerce_before_single_product_summary', 'single_product_container_start', 12);
 add_action('woocommerce_after_single_product_summary', 'single_product_container_end', 15);
+
 
 function fkb_wc_modify(){
     /**
@@ -92,11 +94,11 @@ function fkb_wc_modify(){
     remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
 
     // Shop All Page
-    
+    // if (is_shop()) {
         // retrieve categories on top
         function showcase_items(){
             $showcase_items = new WP_Query(array(
-                'post_type' => 'product_category',
+                'post_type' => 'showcase-items',
                 'meta_key' => 'order',
                 'orderby' => 'meta_value_num',
                 'order' => 'ASC',
@@ -108,8 +110,17 @@ function fkb_wc_modify(){
                 
             <?php
             while ($showcase_items->have_posts()) {
-                $showcase_items->the_post();?>
-                    <a class="showcase-item-content" href="<?php echo home_url()."/product-category/".get_field('category_url'); ?>">
+                $showcase_items->the_post();
+                $url = get_post_field('post_name', get_the_ID());
+                $post_name = get_post_field('post_title', get_the_ID());
+                ?>
+                    <a class="showcase-item-content" href="<?php echo home_url()."/product-category/".$url ?>">
+                    <?php
+                    $image = get_field('showcase_image');
+                    if ($image) {
+                        echo "<img class='showcase-item-image' src='" . esc_url($image) . "' alt='" . esc_attr(get_the_title()) . "' />";
+                    }
+                    ?>
                         <?php the_content(); ?>
                         <h3><?php the_title(); ?></h3>
                         <button>Shop</button>
@@ -121,19 +132,16 @@ function fkb_wc_modify(){
             <?php
 
             wp_reset_postdata();
-    }
-
-        if(is_shop()){
+        // }
 
         add_action('woocommerce_before_main_content', 'showcase_items', 10);
-        }
+    }
 
     if(is_product_category()){
         add_action('woocommerce_after_shop_loop', 'showcase_items', 10);
     }
-
  
-// Single Product Page
+    // Single Product Page
     if (is_product()) {
 // Removed tabs
         add_filter( 'woocommerce_product_tabs', 'custom_remove_additional_info_tab', 98 );
@@ -157,14 +165,7 @@ function fkb_wc_modify(){
         // Removed meta description
         remove_action('woocommerce_product_meta_end', 'WC_Brands->show_brand', 10);
 
-    add_filter('woocommerce_get_image_size_single', function($size) {
-    return array(
-        'width'  => 1536,
-        'height' => 1536,
-        'crop'   => 1,
-    );
-
-    add_filter('woocommerce_get_image_size_thumbnail', function($size) {
+add_filter('woocommerce_get_image_size_single', function($size) {
     return array(
         'width'  => 1536,
         'height' => 1536,
@@ -172,9 +173,13 @@ function fkb_wc_modify(){
     );
 });
 
-    
+add_filter('woocommerce_get_image_size_thumbnail', function($size) {
+    return array(
+        'width'  => 1536,
+        'height' => 1536,
+        'crop'   => 1,
+    );
 });
-
 // Added title display
         function category_title() {
             $terms_category = get_the_terms( get_the_ID(), 'product_cat' );

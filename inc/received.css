@@ -1,0 +1,15 @@
+.woocommerce-order {
+    margin: 100px 50px 100px 50px;
+}
+
+.woocommerce-order>p {
+    margin-bottom: 30px;
+}
+
+.woocommerce-order-details>h2 {
+    margin-bottom: 20px !important;
+}
+
+.woocommerce-column__title {
+    margin-bottom: 20px;
+}

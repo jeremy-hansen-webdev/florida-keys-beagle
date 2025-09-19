@@ -13,15 +13,15 @@
     cursor: not-allowed !important;
 }
 
+.item-added-to-cart {
+    color: green;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
 .add-to-cart-color,
-.add-to-cart-size {
-    display: none;
-}
-
-.size-options-container[title='non-selected'] {
-    display: none;
-}
-
+.add-to-cart-size,
+.size-options-container[title='non-selected'],
 .product-id-text {
     display: none;
 }

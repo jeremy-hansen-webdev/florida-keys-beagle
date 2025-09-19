@@ -11,16 +11,16 @@
 
 }
 
-.progress_bar,
-.progress_bar_active {
+.progress_bar.selected {
+    background-color: var(--600, #615133);
+
+}
+
+.progress_bar {
     width: 37px;
     height: 37px;
     background-color: var(--200, #B6AC9A);
     border-radius: 50%;
-}
-
-.progress_bar_active {
-    background-color: var(--600, #615133);
 }
 
 .progress_bar_container p {

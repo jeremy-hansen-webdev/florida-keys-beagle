@@ -57,9 +57,6 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	$attributes = $product->get_attributes();
 
 	// Showcase Image
-
-
-
 	$image_url = wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' );
 	echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '">';
 	echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $product->get_name() ) . '" class="product-gallery-thumbnail" />';
@@ -97,9 +94,9 @@ foreach ($color_options as $color) {
 		$my_info = is_size_available($size, $color, $variation_options);
 		// create a function that sees if $size is in $variation_options.
 		if ($my_info) {
-			echo '<span class="size-option size-color-' . $my_info['color'] . '" title="' . esc_attr($my_info['id']) . '" id="' . esc_attr($my_info['size']) . '">' . esc_html($my_info['size']) . '</span>';
+			echo '<span class="size-option size-color-' . $my_info['color'] . '" title="' . esc_attr($my_info['id']) . '" index="' . esc_attr($product_index) . '" id="' . esc_attr($my_info['size']) . '">' . esc_html($my_info['size']) . '</span>';
 		} else {
-			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="none" id="' . esc_attr($sizes[$size_count]) . '">' . esc_html($sizes[$size_count]) . '</span>';
+			echo '<span class="size-option size-color-' . esc_attr($color) . '" title="none" index="' . esc_attr($product_index) . '" id="' . esc_attr($sizes[$size_count]) . '">' . esc_html($sizes[$size_count]) . '</span>';
 		}
 		$size_count++;
 	}
@@ -150,15 +147,15 @@ foreach ($color_options as $color) {
 	do_action( 'woocommerce_after_shop_loop_item_title' );
 
 	// Add to Cart Button with color and size variants
-
+	$index = isset($wp_query->current_post) ? $wp_query->current_post : 0;
 	echo '
-	<div class="add-to-cart-color"></div>
-	<div class="add-to-cart-size"></div>
-
-	<input class="product-id-text" value="' . esc_attr( $product->get_id() ) . '">
-	<button class="ajax-add-to-cart">Add to Cart</button>
-	<p class="error-message-color" style="color: red; display:none;">Please select a color</p>
-	<p class="error-message-size" style="color: red; display:none;">Please select a size</p>
+	<div class="add-to-cart-color product-' . esc_attr( $index ) . '"></div>
+	<div class="add-to-cart-size product-' . esc_attr( $index ) . '"></div>
+	<p class="item-added-to-cart product-' . esc_attr( $index ) . '" style="display:none;">Item added to cart</p>
+	<input class="product-id-text product-' . esc_attr( $index ) . '" value="' . esc_attr( $product->get_id() ) . '">
+	<button class="ajax-add-to-cart product-' . esc_attr( $index ) . '" id="'. esc_attr( $index ) . '">Add to Cart</button>
+	<p class="error-message-color product-' . esc_attr( $index ) . '" style="color: red; display:none;">Please select a color</p>
+	<p class="error-message-size product-' . esc_attr( $index ) . '" style="color: red; display:none;">Please select a size</p>
 	';
 
 

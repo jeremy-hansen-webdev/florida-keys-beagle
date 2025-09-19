@@ -1,0 +1,7 @@
+{
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "search.searchView.keywordSuggestions": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true
+}

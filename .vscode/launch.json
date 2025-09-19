@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug Florida Keys Beagle Theme JS",
+            "url": "http://fkb.local/", // Change to your local site URL if different
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "trace": true,
+            "breakOnLoad": true
+        },
+        {
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",

@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Debug scripts.js with Chrome",
+			"type": "shell",
+			"command": "code --inspect-brk=9229 .",
+			"args": [],
+			"group": "test"
+		}
+	]
+}

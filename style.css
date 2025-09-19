@@ -145,6 +145,14 @@ header {
     top: 0;
 }
 
+#cart>span {
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    padding: 2px 6px;
+}
+
+
 .logo {
     position: absolute;
     left: 0;
@@ -543,7 +551,42 @@ footer {
     display: flex;
 }
 
-.home-product-title {
+.carousel>.woocommerce>ul>li>.size-options-container,
+.carousel>.woocommerce>ul>li>.color-swatch-container,
+.carousel>.woocommerce>ul>li>.ajax-add-to-cart {
+    display: none;
+}
+
+.related.products>ul>li>.color-swatch-container,
+.related.products>ul>li>.size-options-container,
+.related.products>ul>li>.ajax-add-to-cart {
+    display: none;
+}
+
+.related.products>ul>li>div {
+    display: flex;
+    flex-direction: column;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    margin-bottom: 100px;
+}
+
+.carousel>.woocommerce>ul>li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel>.woocommerce>ul>li>div {
+    margin-top: -50px;
+}
+
+.carousel>.woocommerce>ul>li>.ajax-add-to-cart .home-product-title {
     margin-top: 120px;
 }
 
@@ -680,6 +723,7 @@ footer {
     .main-menu {
         display: none;
     }
+
 
     .hamburger-icon {
         display: block;
